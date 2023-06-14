@@ -32,6 +32,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'before' => 'user'], f
 
     Route::get('/profile', [PageController::class, 'profile'])->name('userprofile');
 
+    Route::post('update-profile/{id}', [AutController::class, 'updateprofile'])->name('updateprofile');
+
     Route::get('/verify-email', [PageController::class, 'verify']);
 
     Route::get('/activatesystemuser/{id}', [PageController::class, 'activatesystemuser'])->name('activatesystemuser');

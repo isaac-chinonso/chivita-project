@@ -15,31 +15,31 @@ use Illuminate\Support\Facades\Mail;
 
 class AutController extends Controller
 {
-     // Login Function
-     public function signin(Request $request)
-     {
- 
-         $validator = Validator::make($request->all(), [
-             'email' => 'required',
-             'password' => 'required'
-         ]);
-         if ($validator->fails()) {
-             return redirect('/login')
-                 ->withErrors($validator)
-                 ->withInput($request->all());
-         }
- 
-         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'role_id' => '2', 'status' => '1'])) {
- 
-             return redirect()->intended(route('userprofile'));
-         }
+    // Login Function
+    public function signin(Request $request)
+    {
 
-         \Session::flash('warning_message', 'These credentials do not match our records.');
- 
-         return redirect()->back();
-     }
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return redirect('/login')
+                ->withErrors($validator)
+                ->withInput($request->all());
+        }
 
-     //Save Users Function
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'role_id' => '2', 'status' => '1'])) {
+
+            return redirect()->intended(route('userprofile'));
+        }
+
+        \Session::flash('warning_message', 'These credentials do not match our records.');
+
+        return redirect()->back();
+    }
+
+    //Save Users Function
     public function register(Request $request)
     {
         // Validation
@@ -88,8 +88,27 @@ class AutController extends Controller
         Auth::login($user);
 
         $user = Auth::user();
-        
+
         \Session::flash('Success_message', 'You have successfully registered');
+
+        return redirect()->intended(route('userprofile'));
+    }
+
+    // Update profile function
+    public function updateprofile(Request $request, $id)
+    {
+        $user = Auth::user();
+        $profile = Profile::find($id);
+        // Validation
+        $this->validate($request, array(
+            'instagram' => 'required',
+        ));
+
+        $profile = Profile::find($id);
+        $profile->instagram = $request->input('instagram');
+        $profile->save();
+
+        \Session::flash('Success_message', '✔ profile Updated Succeffully');
 
         return redirect()->intended(route('userprofile'));
     }
@@ -134,5 +153,4 @@ class AutController extends Controller
         Auth::logout();
         return redirect()->intended(route('login'));
     }
-
 }

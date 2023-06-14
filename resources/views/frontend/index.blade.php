@@ -80,18 +80,18 @@ Chivita
                             <div class="col-md-12">
                                 <label>Favourite Chivita Product</label>
                                 <select class="form-control select-form" name="product" required>
-                                    <option selected disabled></option>
-                                    <option class="select-option">Chivita Active (Carrot + Orange)</option>
-                                    <option class="select-option">Chivita 100% Orange Fruit Juice</option>
-                                    <option class="select-option">Chivita Ice Tea Lemon</option>
-                                    <option class="select-option">Chivita 100% Pineapple Fruit Juice</option>
-                                    <option class="select-option">Chivita Hollandia Yoghurt Strawberry</option>
-                                    <option class="select-option">Chivita Active</option>
-                                    <option class="select-option">Chivita Hollandia Yoghurt Plain</option>
-                                    <option class="select-option">Chivita 100% Apple Fruit Juice</option>
-                                    <option class="select-option">Chivita 100% Red Grape Fruit Juice</option>
+                                    <option selected disabled>Select Product</option>
+                                    <option class="select-option" value="Chivita Active (Carrot + Orange)">Chivita Active (Carrot + Orange)</option>
+                                    <option class="select-option" value="Chivita 100% Orange Fruit Juice">Chivita 100% Orange Fruit Juice</option>
+                                    <option class="select-option" value="Chivita Ice Tea Lemon">Chivita Ice Tea Lemon</option>
+                                    <option class="select-option" value="Chivita 100% Pineapple Fruit Juice">Chivita 100% Pineapple Fruit Juice</option>
+                                    <option class="select-option" value="Chivita Hollandia Yoghurt Strawberry">Chivita Hollandia Yoghurt Strawberry</option>
+                                    <option class="select-option" value="Chivita Active">Chivita Active</option>
+                                    <option class="select-option" value="Chivita Hollandia Yoghurt Plain">Chivita Hollandia Yoghurt Plain</option>
+                                    <option class="select-option" value="Chivita 100% Apple Fruit Juice">Chivita 100% Apple Fruit Juice</option>
+                                    <option class="select-option" value="Chivita 100% Red Grape Fruit Juice">Chivita 100% Red Grape Fruit Juice</option>
                                 </select>
-                                
+
                             </div>
                         </div>
                     </div><br>

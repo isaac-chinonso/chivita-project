@@ -22,30 +22,51 @@ Profile || Chivita
                         <input type="radio" id="tab-1" name="tabby-tabs" checked>
                         <label for="tab-1">Profile Info</label>
                         <div class="tabby-content">
-                            <form method="post" action="">
+                            <form method="post" action="{{ route('updateprofile',Auth::user()->id) }}">
                                 @csrf
                                 <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="text-left">First Name</label>
+                                    <div class="row raw">
+                                        <div class="col-md-6 clo">
+                                            <label class="text-left lab">First Name</label>
                                             <input type="text" class="form-control" name="fname" value="{{ Auth::user()->profile->first()->fname }}" disabled>
-                                        </div><br>
-                                        <div class="col-md-6">
-                                            <label class="text-left">Last Name</label>
+                                        </div>
+                                        <div class="col-md-6 clo">
+                                            <label class="text-left lab">Last Name</label>
                                             <input type="text" class="form-control" name="lname" value="{{ Auth::user()->profile->first()->lname }}" disabled>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label class="text-left">Email Address</label>
+                                    </div>
+                                    <div class="row raw">
+                                        <div class="col-md-6 clo">
+                                            <label class="text-left lab">Email Address</label>
                                             <input type="email" class="form-control" name="fname" value="{{ Auth::user()->email }}" disabled>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label class="text-left">Phone Number</label>
+                                        <div class="col-md-6 clo">
+                                            <label class="text-left lab">Phone Number</label>
                                             <input type="phone" class="form-control" name="phone" value="{{ Auth::user()->profile->first()->phone }}" disabled>
                                         </div>
-                                        <div class="col-md-12">
-                                            <label class="text-left">Social Media Handle</label>
+                                    </div>
+                                    <div class="row raw">
+                                        <div class="col-md-6 clo">
+                                            <label class="text-left lab">Favourite Chivita Product</label>
+                                            <select class="form-control select-form" name="product" disabled required>
+                                                <option selected value="{{ Auth::user()->profile->first()->product }}">{{ Auth::user()->profile->first()->product }}</option>
+                                                <option disabled></option>
+                                                <option class="select-option" value="Chivita Active (Carrot + Orange)">Chivita Active (Carrot + Orange)</option>
+                                                <option class="select-option" value="Chivita 100% Orange Fruit Juice">Chivita 100% Orange Fruit Juice</option>
+                                                <option class="select-option" value="Chivita Ice Tea Lemon">Chivita Ice Tea Lemon</option>
+                                                <option class="select-option" value="Chivita 100% Pineapple Fruit Juice">Chivita 100% Pineapple Fruit Juice</option>
+                                                <option class="select-option" value="Chivita Hollandia Yoghurt Strawberry">Chivita Hollandia Yoghurt Strawberry</option>
+                                                <option class="select-option" value="Chivita Active">Chivita Active</option>
+                                                <option class="select-option" value="Chivita Hollandia Yoghurt Plain">Chivita Hollandia Yoghurt Plain</option>
+                                                <option class="select-option" value="Chivita 100% Apple Fruit Juice">Chivita 100% Apple Fruit Juice</option>
+                                                <option class="select-option" value="Chivita 100% Red Grape Fruit Juice">Chivita 100% Red Grape Fruit Juice</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 clo">
+                                            <label class="text-left lab">Social Media Handle</label>
                                             <input type="text" class="form-control" name="instagram" value="{{ Auth::user()->profile->first()->instagram }}">
                                         </div>
+
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-danger btn-lg btn-block">Update Profile</button>
@@ -77,14 +98,14 @@ Profile || Chivita
                                         </form>
                                     </div>
                                     <div class="dropDown">
-                                        <i class="fa fa-ellipsis-h"></i> 
+                                        <i class="fa fa-ellipsis-h"></i>
                                         <div class="submenu">
                                             <a href="#" class="copy-btn" data-url="{{ asset('upload/' . $vid->source) }}"><i class="fa fa-copy"></i> Copy</a>
-                                            
+
                                             <a href="#"><i class="fa fa-share"></i> Share</a>
-                                            
+
                                             <a href="{{ route('deletevideo', $vid->id) }}" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -93,7 +114,7 @@ Profile || Chivita
 
                             <form method="post" action="{{ route('savevideo') }}" enctype="multipart/form-data">
                                 @csrf
-                                <label class="text-left">Upload your 15 Seconds Video</label>
+                                <label class="text-left lab">Upload your 15 Seconds Video</label>
                                 <input type="file" name="image" class="form-control" value="250000" required><br>
                                 <button type="submit" class="btn bot btn-lg btn-block">Upload New Video</button>
                             </form>
@@ -107,17 +128,19 @@ Profile || Chivita
                             <form method="post" action="{{ route('user.update-password') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6 col-lg-12">
-                                            <label class="text-left">Enter Old Password</label>
+                                    <div class="row raw">
+                                        <div class="col-md-6 col-lg-12 clo">
+                                            <label class="text-left lab">Enter Old Password</label>
                                             <input type="password" class="form-control" name="current_password">
                                         </div>
-                                        <div class="col-md-6 col-lg-6">
-                                            <label class="text-left">Enter New Password</label>
+                                    </div>
+                                    <div class="row raw">
+                                        <div class="col-md-6 col-lg-6 clo">
+                                            <label class="text-left lab">Enter New Password</label>
                                             <input type="password" class="form-control" name="password">
                                         </div>
-                                        <div class="col-md-6 col-lg-6">
-                                            <label class="text-left">Confirm New Password</label>
+                                        <div class="col-md-6 col-lg-6 clo">
+                                            <label class="text-left lab">Confirm New Password</label>
                                             <input type="password" class="form-control" name="password_confirmation">
                                         </div>
                                     </div>
@@ -138,7 +161,7 @@ Profile || Chivita
     $(document).ready(function() {
         $('.copy-btn').click(function() {
             var url = $(this).data('url');
-            
+
             navigator.clipboard.writeText(url)
                 .then(function() {
                     alert('URL copied to clipboard!');
