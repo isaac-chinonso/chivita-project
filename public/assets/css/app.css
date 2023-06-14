@@ -1,0 +1,226 @@
+/* ------------------- */
+
+
+/* TEMPLATE        -- */
+
+
+/* ----------------- */
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,900,300);
+
+/* ------------------- */
+
+
+/* PEN STYLES      -- */
+
+
+/* ----------------- */
+
+
+/* MAKE IT CUTE ----- */
+
+html,
+body {
+    height: 100%;
+    background-color: #f4f4f4;
+}
+
+.tabs {
+    position: relative;
+    display: flex;
+    min-height: 300px;
+    border-radius: 8px 8px 0 0;
+}
+
+.tabby-tab {
+    flex: 1;
+}
+
+.tabby-tab label {
+    display: block;
+    box-sizing: border-box;
+    /* tab content must clear this */
+    height: 40px;
+    padding: 10px;
+    text-align: center;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    transition: background 0.5s ease;
+}
+
+.tabby-tab label:hover {
+    background: #fef2f3;
+}
+
+.tabby-content {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: fit-content;
+    /* clear the tab labels */
+    top: 40px;
+    padding: 20px;
+    border-radius: 0 0 8px 8px;
+    background: #fff;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    /* show/hide */
+    opacity: 0;
+    transform: scale(0.1);
+    transform-origin: top left;
+}
+
+
+/* MAKE IT WORK ----- */
+
+.tabby-tab [type=radio] {
+    display: none;
+}
+
+[type=radio]:checked~label {
+    background: #fef2f3;
+    color: #eb0010;
+    z-index: 2;
+}
+
+[type=radio]:checked~label~.tabby-content {
+    z-index: 1;
+    /* show/hide */
+    opacity: 1;
+    transform: scale(1);
+}
+
+input[type="text"] {
+    background: transparent;
+    border: 2px solid #000;
+    height: 55px;
+    border-radius: 10px;
+}
+
+input[type="email"] {
+    background: transparent;
+    border: 2px solid #000;
+    height: 55px;
+    border-radius: 10px;
+}
+
+input[type="phone"] {
+    background: transparent;
+    border: 2px solid #000;
+    height: 55px;
+    border-radius: 10px;
+}
+
+.line {
+    border: 1px #2f2e2e solid;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.bot {
+    background-color: #f3e7e9;
+    color: red;
+}
+
+.bot:hover {
+    background-color: #f3e7e9;
+    color: red;
+}
+
+
+/* BREAKPOINTS ----- */
+
+@media screen and (max-width: 767px) {
+    .tabs {
+        min-height: 400px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .tabs {
+        min-height: 700px;
+    }
+    .label-input {
+        height: 20px;
+    }
+    .tabby-content {
+        top: 60px;
+        height: 780px;
+    }
+    .tabby-content img {
+        float: none;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}
+
+a {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+}
+
+
+/* Modal container */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black with opacity */
+}
+
+.dropDown button {
+    background-color: black;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropDown {
+    position: relative;
+    display: inline-block;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #fdf6f6;
+    z-index: 1;
+    padding: 20px;
+    left: -90px
+}
+
+.submenu a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 38px;
+}
+
+.fa-trash,
+.fa-copy,
+.fa-share {
+    margin-right: 5px;
+}
+
+.dropDown:hover .submenu {
+    display: inline-block;
+}
