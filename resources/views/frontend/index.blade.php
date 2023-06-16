@@ -10,10 +10,10 @@ Chivita
             <div class="row">
                 <div class="col-lg-6">
                     <div class="hero-content">
-                        <h1>Join the<span class="text-dark">#ChivitaMoments</span>Challenge and Win Amazing Prizes</h1>
+                        <h1>Recreate any of the<span class="text-dark">#ChivitaStyleNSips</span>drink recipes and be rewarded</h1>
                         <div class="buttons">
                             <div class="btn btn-dark btn-lg" style="background-color: #000;">
-                                <a href="{{ url('/') }}#register" class="text-white" style="padding: 0 20px 0 20px;font-family: 'DM Sans';font-style: normal;font-weight: 500;font-size: 16px;">Register <span class="mobile-image">to Win</span></a>
+                                <a href="{{ url('/') }}#register" class="text-white" style="padding: 0 20px 0 20px;font-family: 'DM Sans';font-style: normal;font-weight: 500;font-size: 16px;">Upload your video <span class="mobile-image"></span></a>
                             </div>
                             <div class="btn btn-outline-light btn-lg desktop-image" style="border: 1px solid #000;">
                                 <a href="{{ url('/login') }}" style="padding: 0 30px 0 30px;color:#000;">Login</a>
@@ -22,7 +22,7 @@ Chivita
                     </div>
                 </div>
                 <div class="col-lg-6 mobile-image">
-                    <img src="assets/img/chivita1.png" alt="image">
+                    <img src="assets/img/chivita2.png" alt="image">
                 </div>
             </div>
         </div>
@@ -118,7 +118,7 @@ Chivita
     <div class="container">
         <div class="wow animate fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
             <div class="sec-title">
-                <h2 class="how-it-works-heading">How it <b class="text-danger">Works</b></h2>
+                <h2 class="how-it-works-heading">Here's what <b class="text-danger">you need to do</b></h2>
             </div>
             <p class="how-it-works-paragraph">Follow these simple steps to win amazing prizes</p>
         </div>
@@ -144,7 +144,7 @@ Chivita
                                 <span class="notify-badge">2</span>
                                 <img src="assets/img/image 3.png" class="rounded-circle">
                                 <h4>Upload a Video</h4>
-                                <p>Make a 15 sec video telling us<br> about your #ChivitaMoments</p>
+                                <p>Recreate your favourite #CHivitaStyleNSips drink<br> recipe in a 15secs video and upload</p>
                             </div>
                         </div>
                         <div class="col-md-3 img-rounded">
@@ -152,7 +152,7 @@ Chivita
                                 <span class="notify-badge">3</span>
                                 <img src="assets/img/image 5.png" class="rounded-circle">
                                 <h4>Follow us on Social<br class="desktop-show"> Media</h4>
-                                <p>Follow @chivita on <br>instagram</p>
+                                <p>Follow @chivitajuices on <br>instagram</p>
                             </div>
                         </div>
                         <div class="col-md-3 img-rounded">
@@ -160,7 +160,7 @@ Chivita
                                 <span class="notify-badge">4</span>
                                 <img src="assets/img/image 6.png" class="rounded-circle">
                                 <h4>Invite friends to like <br class="desktop-show"> your Video</h4>
-                                <p>invite friends to like your video. <br>Video with the highest price win <br>prizes.</p>
+                                <p>Share a link to your video on social <br> media and invite your friends to like.</p>
                             </div>
                         </div>
                     </div>
@@ -174,7 +174,7 @@ Chivita
     <div class="container">
         <div class="wow animate fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
             <div class="sec-title">
-                <h2 class="text-center"><b class="text-danger">Trending</b> #ChivitaMoments</h2>
+                <h2 class="text-center"><b class="text-danger">Trending</b> #ChivitaStyleNSips recipe</h2>
             </div>
             <p class="text-center" style="font-size: 18px;">See trending videos from other participants</p>
         </div>

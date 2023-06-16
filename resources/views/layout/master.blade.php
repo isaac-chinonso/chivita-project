@@ -48,7 +48,7 @@
         <div class="main-menu">
             <nav class="main-nav">
                 <div class="mobile-menu-logo">
-                    <a href="{{ url('/') }}"><img src="assets/img/logo1.png" alt=""></a>
+                    <a href="{{ url('/') }}"><img src="assets/img/logo.png" alt=""></a>
                     <div class="remove">
                         <i class="bi bi-plus-lg"></i>
                     </div>
@@ -57,7 +57,7 @@
                     <div class="cmn-btn btn-sm">
                         <div class="line-1"></div>
                         <div class="line-2"></div>
-                        <a href="{{ url('/') }}#register" style="padding:5px;">Register</a>
+                        <a href="{{ url('/') }}#register" style="padding:5px;">Upload your video</a>
                     </div>
                 </div><br>
                 <div class="d-flex justify-content-center d-lg-none d-block" style="padding: 5px 20px 5px 20px">
@@ -71,7 +71,14 @@
                     <div class="line-1"></div>
                     <div class="line-2"></div>
                     @if(!Auth::check())
-                    <a href="#register" class=" text-danger">Register to Win</a>
+                    <a href="#register" class="btn btn-outline-danger mobile-image">Upload your video</a>
+                    <div class="mobile-menu">
+                        <a href="javascript:void(0)" class="cross-btn">
+                            <span class="cross-top"></span>
+                            <span class="cross-middle"></span>
+                            <span class="cross-bottom"></span>
+                        </a>
+                    </div>
                     @else
                     <a href="{{ route('userprofile') }}" class="text-danger">My Profile</a>
                     @endif
@@ -147,13 +154,13 @@
 
             // display an error message if an alphabet is entered
             if (/\D/.test(input.value)) {
-              alert("Please enter only numbers.");
-              input.value = input.value.replace(/\D/g, '');
+                alert("Please enter only numbers.");
+                input.value = input.value.replace(/\D/g, '');
             }
 
             // maximum length for the phone number
             if (input.value.length > 10) {
-              input.value = input.value.slice(0, 10);
+                input.value = input.value.slice(0, 10);
             }
         }
     </script>
