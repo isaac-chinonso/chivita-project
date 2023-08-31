@@ -7,23 +7,30 @@ use App\Models\Video;
 use App\Models\Videolike;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Jorenvh\Share\Share;
 
 class PageController extends Controller
 {
     public function index()
     {
         $data['video'] = Video::inRandomOrder()->simplePaginate(6);
-        $data['countvideolikes'] = Videolike::count();
+        $user = Auth::user();
         return view('frontend.index', $data);
     }
 
     public function video()
     {
-        $data['video'] = Video::inRandomOrder()->simplePaginate(6);
-        $data['countvideolikes'] = Videolike::count();
+        $data['video'] = Video::inRandomOrder()->simplePaginate(9);
         return view('frontend.video', $data);
     }
 
+    public function videodetails($slug)
+    {
+        $data['videodetails'] = Video::where('slug', $slug)->first();
+        return view('frontend.videodetails', $data);
+    }
+        
     public function login()
     {
         return view('frontend.login');
@@ -33,7 +40,6 @@ class PageController extends Controller
     {
         $user = Auth::user();
         $data['video'] = Video::where('user_id', $user->id)->get();
-        $data['countvideolikes'] = Videolike::count();
         return view('frontend.profile', $data);
     }
 
@@ -48,23 +54,44 @@ class PageController extends Controller
         return view('frontend.verify');
     }
 
-    public function like(Request $request)
+    public function resetpassword()
     {
-        // Validation
-        $this->validate($request, [
-            'video_id' => 'required',
-        ]);
-
-        $user = Auth::user();
-        $videolikes = new Videolike();
-        $videolikes->user_id = $user->id;
-        $videolikes->video_id = $request->input('video_id');
-        $videolikes->save();
-
-        \Session::flash('Success_message', 'Video liked successfully');
-
-        return back();
+        return view('frontend.reset_password');
     }
+
+    // public function like(Request $request)
+    // {
+    //     // Validation
+    //     $this->validate($request, [
+    //         'video_id' => 'required',
+    //     ]);
+
+    //     $user = Auth::user();
+    //     $videolikes = new Videolike();
+    //     $videolikes->user_id = $user->id;
+    //     $videolikes->video_id = $request->input('video_id');
+    //     if (Videolike::where('user_id', '=', $user->id)->where('video_id', '=', $videolikes->video_id)->exists()) {
+    //         \Session::flash('warning_message', 'Cant like video twice');
+    //         return back();
+    //     } else {
+    //         $videolikes->save();
+    //         \Session::flash('Success_message', 'Video liked successfully');
+
+    //         return back();
+    //     }
+    // }
+
+    // public function unlike($id)
+    // { 
+    //     // Unlike Video
+    //     $user = Auth::user();
+    //     $video = Videolike::where('user_id', $user->id)->where('video_id', $id)->first();
+    //     $video->delete();
+
+    //     \Session::flash('Success_message', 'Video Unliked Successfully');
+    //     return back();
+    // }
+    
 
     public function videoupload(Request $request)
     {
@@ -98,4 +125,21 @@ class PageController extends Controller
 
         return back();
     }
+
+    public function sharePosts($slug)
+    {
+        $shareButtons = \Share::page()
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()        
+        ->reddit();
+  
+        $video = Video::where('slug',$slug)->first();
+
+        return view("frontend.profile", compact('shareButtons', 'video'));
+    }
+
+    
 }

@@ -20,6 +20,8 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
 
+    
+
     <!---------------  Font Aewsome  --------------------->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
@@ -28,17 +30,6 @@
 </head>
 
 <body>
-
-    <div class="preloader">
-        <div class="loader">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-
-
     <header class="header-area position_top">
         <div class="site-logo">
             <div class="logo">
@@ -71,7 +62,7 @@
                     <div class="line-1"></div>
                     <div class="line-2"></div>
                     @if(!Auth::check())
-                    <a href="#register" class="btn btn-outline-danger mobile-image">Upload your video</a>
+                    <a href="{{ url('/') }}#register" class="btn btn-outline-danger mobile-image">Upload your video</a>
                     <div class="mobile-menu">
                         <a href="javascript:void(0)" class="cross-btn">
                             <span class="cross-top"></span>
@@ -80,7 +71,7 @@
                         </a>
                     </div>
                     @else
-                    <a href="{{ route('userprofile') }}" class="text-danger">My Profile</a>
+                    <a href="{{ route('userprofile') }}" class="btn btn-outline-danger text-danger">My Profile</a>
                     @endif
                 </div>
             </div>
@@ -111,10 +102,8 @@
                         </div>
                         <div class="col-sm-8 col-lg-8 col-xl-7">
                             <ul class="footer-bottom-menu">
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                <li><a href="https://www.instagram.com/chivitajuices/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://twitter.com/Chivitajuices" target="_blank"><i class="fab fa-twitter"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -128,7 +117,7 @@
     <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="assets/js/jquery-3.6.0.min.js"></script>
 
-    <script src="assets/js/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
 
     <script src="assets/js/filedrag.js"></script>
@@ -159,8 +148,8 @@
             }
 
             // maximum length for the phone number
-            if (input.value.length > 10) {
-                input.value = input.value.slice(0, 10);
+            if (input.value.length > 11) {
+                input.value = input.value.slice(0, 11);
             }
         }
     </script>

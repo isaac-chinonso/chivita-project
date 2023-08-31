@@ -47,6 +47,9 @@ class AutController extends Controller
             'fname' => 'required',
             'lname' => 'required',
             'phone' => 'required',
+            'gender' => 'required',
+            'age' => 'required',
+            'location' => 'required',
             'instagram' => 'required',
             'product' => 'required',
             'email' => 'required|string|email|max:255|unique:users',
@@ -69,6 +72,9 @@ class AutController extends Controller
         $profile->fname = $request->input('fname');
         $profile->lname = $request->input('lname');
         $profile->phone = $request->input('phone');
+        $profile->gender = $request->input('gender');
+        $profile->age = $request->input('age');
+        $profile->location = $request->input('location');
         $profile->instagram = $request->input('instagram');
         $profile->product = $request->input('product');
         $profile->save();

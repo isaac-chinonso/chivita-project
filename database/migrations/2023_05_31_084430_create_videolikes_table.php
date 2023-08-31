@@ -15,10 +15,10 @@ class CreateVideolikesTable extends Migration
     {
         Schema::create('videolikes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned();
+            $table->string('user_id');
             $table->bigInteger('video_id')->unsigned();
+            $table->boolean('status');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('video_id')->references('id')->on('videos')->onDelete('cascade');
         });
     }

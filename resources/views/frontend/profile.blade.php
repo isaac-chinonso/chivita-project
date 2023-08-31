@@ -3,7 +3,9 @@
 Profile || Chivita
 @endsection
 @section('content')
-
+@php
+use App\Models\Videolike;
+@endphp
 <section class="services-area sec-mar" style="padding-top: 100px;">
     <div class="container">
         <div class="wow animate fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
@@ -36,14 +38,30 @@ Profile || Chivita
                                         </div>
                                     </div>
                                     <div class="row raw">
-                                        <div class="col-md-6 clo">
+                                        <div class="col-md-6">
                                             <label class="text-left lab">Email Address</label>
                                             <input type="email" class="form-control" name="fname" value="{{ Auth::user()->email }}" disabled>
                                         </div>
-                                        <div class="col-md-6 clo">
+                                        <div class="col-md-6 mobile-line-break">
                                             <label class="text-left lab">Phone Number</label>
                                             <input type="phone" class="form-control" name="phone" value="{{ Auth::user()->profile->first()->phone }}" disabled>
                                         </div>
+                                    </div>
+                                    <div class="row raw">
+                                        <div class="col-md-6 clo">
+                                            <label class="text-left lab">Gender</label>
+                                            <select class="form-control select-form" name="product" disabled required>
+                                                <option selected value="{{ Auth::user()->profile->first()->gender }}">{{ Auth::user()->profile->first()->gender }}</option>
+                                                <option disabled></option>
+                                                <option class="select-option" value="Male">Male</option>
+                                                <option class="select-option" value="Female">Female</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 clo">
+                                            <label class="text-left lab">Location</label>
+                                            <input type="text" class="form-control" name="location" value="{{ Auth::user()->profile->first()->location }}" disabled>
+                                        </div>
+
                                     </div>
                                     <div class="row raw">
                                         <div class="col-md-6 clo">
@@ -80,7 +98,7 @@ Profile || Chivita
                         <div class="tabby-content">
                             <div class="line">
                                 @foreach($video as $vid)
-                                <div class="media" style="padding: 20px;">
+                                <div class="media" style="padding: 40px;">
 
                                     <video width="180" height="126" controls>
                                         <source src="../upload/{{ $vid->source }}" type="video/mp4">
@@ -88,24 +106,48 @@ Profile || Chivita
                                         Your browser does not support the video tag.
                                     </video>
 
-                                    <div class="media-body" style="padding: 15px 20px 15px 20px;">
+                                    <div class="media-body" style="padding: 15px 20px 15px 20px;display:inline-block;">
                                         <h5 class="mt-0 ">My Chivita Moments</h5>
-                                        <small class="text-muted">{{ $vid->created_at->diffForHumans() }}</small><br><br>
-                                        <form method="post" action="{{ url('/user/save-videos-ikes') }}">
+                                        <small class="text-muted">{{ $vid->created_at->diffForHumans() }}</small><br>
+                                        <br>
+                                        @php
+                                        $countvideolikes = Videolike::where('video_id', $vid->id)->count();
+                                        @endphp
+                                        @if (Videolike::where('user_id', request()->ip())->where('video_id', $vid->id)->exists())
+                                        <form action="{{ route('video.unlike', ['video' => $vid->id]) }}" method="POST">
                                             @csrf
-                                            <input type="hidden" name="video_id" value="{{ $vid->id }}">
-                                            <button type="submit" class="btn btn-outline-dark btn-sm" style="border: #fff solid 1px"><i class="fa fa-thumbs-up "></i> Like</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $countvideolikes }} Likes
+                                            <div class="dropdown dropup">
+                                                <button type="submit" class="btn btn-outline-dark btn-sm" style="border: #fff solid 1px"><i class="fa fa-thumbs-down"></i> Unlike</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $countvideolikes }} Likes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-share"></i> Share</span>
+
+                                                <div class="dropdown-menu">
+                                                    <span class="dropdown-item"> {!! Share::page(route('videodetails', $vid->slug))->facebook() !!} </span>
+                                                    <span class="dropdown-item"> {!! Share::page(route('videodetails',$vid->slug))->twitter() !!} </span>
+                                                    <span class="dropdown-item"> {!! Share::page(route('videodetails',$vid->slug))->linkedin() !!} </span>
+                                                    <span class="dropdown-item"> {!! Share::page(route('videodetails',$vid->slug))->whatsapp() !!} </span>
+
+                                                </div>
+                                            </div>
                                         </form>
+                                        @else
+                                        <form action="{{ route('video.like', ['video' => $vid->id]) }}" method="POST">
+                                            @csrf
+
+                                            <button type="submit" class="btn btn-outline-dark btn-sm" style="border: #fff solid 1px"><i class="fa fa-thumbs-up "></i> Like</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $countvideolikes }} Likes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-share"></i> Share</span>
+                                            <div class="dropdown-menu">
+                                                <span class="dropdown-item"> {!! Share::page(route('videodetails',$vid->slug))->facebook() !!} </span>
+                                                <span class="dropdown-item"> {!! Share::page(route('videodetails',$vid->slug))->twitter() !!} </span>
+                                                <span class="dropdown-item"> {!! Share::page(route('videodetails',$vid->slug))->linkedin() !!} </span>
+                                                <span class="dropdown-item"> {!! Share::page(route('videodetails',$vid->slug))->whatsapp() !!} </span>
+
+                                            </div>
+                                        </form>
+                                        @endif
                                     </div>
-                                    <div class="dropDown">
+                                    <div class="dropDown1">
                                         <i class="fa fa-ellipsis-h"></i>
                                         <div class="submenu">
-                                            <a href="#" class="copy-btn" data-url="{{ asset('upload/' . $vid->source) }}"><i class="fa fa-copy"></i> Copy</a>
-
-                                            <a href="#"><i class="fa fa-share"></i> Share</a>
-
+                                            <a href="#" class="copy-btn" data-url="{{ route('videodetails', $vid->slug) }}"><i class="fa fa-copy"></i> Copy</a>
                                             <a href="{{ route('deletevideo', $vid->id) }}" class="text-danger"><i class="fa fa-trash"></i> Delete</a>
-
                                         </div>
                                     </div>
                                 </div>

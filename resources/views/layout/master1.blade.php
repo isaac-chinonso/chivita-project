@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="../assets/css/bootstrap-icons.css" rel="stylesheet">
 
@@ -23,20 +23,28 @@
 
     <title>@yield('title')</title>
 
+    <style>
+        /* Example CSS */
+        .share-icon {
+            /* Add your custom styling here */
+            font-size: 10px;
+            margin-right: 10px;
+            color: #007bff;
+            display: inline-block;
+            /* Change icon color */
+            /* Add other styles as needed */
+        }
+
+        .share-icon:hover {
+            color: #ff6600;
+            /* Change icon color on hover */
+            /* Add other hover styles as needed */
+        }
+    </style>
+
 </head>
 
 <body>
-
-    <div class="preloader">
-        <div class="loader">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-
-
     <header class="header-area position_top">
         <div class="site-logo">
             <div class="logo">
@@ -88,10 +96,8 @@
                         </div>
                         <div class="col-sm-8 col-lg-8 col-xl-7">
                             <ul class="footer-bottom-menu">
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                <li><a href="https://www.instagram.com/chivitajuices/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://twitter.com/Chivitajuices" target="_blank"><i class="fab fa-twitter"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -109,6 +115,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
 
     <script src="../assets/js/swiper-bundle.min.js "></script>
+
+    <script src="{{ asset('js/share.js') }}"></script>
 
     <script src="../assets/js/waypoints.min.js "></script>
 

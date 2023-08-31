@@ -19,6 +19,9 @@ class CreateProfilesTable extends Migration
             $table->string('fname');
             $table->string('lname');
             $table->string('phone');
+            $table->string('gender');
+            $table->string('age');
+            $table->string('location');
             $table->string('instagram');
             $table->string('Product');
             $table->timestamps();

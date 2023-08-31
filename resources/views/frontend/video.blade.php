@@ -3,14 +3,17 @@
 Trending Moments || Chivita
 @endsection
 @section('content')
+@php
+use App\Models\Videolike;
+@endphp
 
 <section class="services-area sec-mar" style="padding-top: 150px;">
     <div class="container">
         <div class="wow animate fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
             <div class="sec-title">
-                <h2 class="text-center"><b class="text-danger">Trending</b> #ChivitaMoments</h2>
+                <h2 class="text-center"><b class="text-danger">Trending</b> #IRaiseMyGlassToYou <b class="text-dark">Recipe</b></h2>
             </div>
-            <p class="text-center" style="font-size: 18px;">See popular videos of #ChivitaMoments from others like you</p>
+            <p class="text-center" style="font-size: 18px;">See popular videos of #IRaiseMyGlassToYou from others like you</p>
         </div>
     </div>
 </section>
@@ -18,20 +21,55 @@ Trending Moments || Chivita
 <section class="project-area sec-mar">
     <div class="container">
         <div class="row project-items">
-            @foreach($video as $vid)
+            @foreach($videodetailseo as $videodetails)
             <div class="col-md-6 col-lg-4 col-sm-6 single-item graphic ui">
                 <div class="item-img">
-                    <video width="350" height="526" poster="assets/img/unsplash.png" controls>
-                        <source src="upload/{{ $vid->source }}" type="video/mp4">
-                        <source src="upload/{{ $vid->source }}" type="video/ogg">
+                    <video width="350" controls style="border-radius: 10px;height:500px;background-color:#333333;">
+                        <source src="upload/{{ $videodetails->source }}" type="video/mp4">
+                        <source src="upload/{{ $videodetails->source }}" type="video/ogg">
                         Your browser does not support the video tag.
                     </video>
                 </div><br>
                 <div class="row">
                     <div class="col-md-12">
-                        <span style="font-size: 20px;"><i class="fa fa-thumbs-up"></i> Like</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <!-- <span style="font-size: 20px;"><i class="fa fa-share"></i> Share</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-                        <span style="font-size: 20px;">{{ $countvideolikes }} Likes</span>
+                        @php
+                        $countvideolikes = Videolike::where('video_id', $videodetails->id)->count();
+                        @endphp
+                        @if (Videolike::where('user_id', request()->ip())->where('video_id', $videodetails->id)->exists())
+                        <form action="{{ route('video.unlike', ['video' => $videodetails->id]) }}" method="POST">
+                            @csrf
+                            <div class="dropdown dropup">
+                                <button type="submit" class="btn btn-outline-dark btn-sm" style="border: #fff solid 1px"><i class="fa fa-thumbs-down"></i> Unlike</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $countvideolikes }} Likes
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                <a href="#" class="text-dark dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-share"></i> Share</a>
+                                <div class="dropdown-menu">
+                                    <span class="dropdown-item"> {!! Share::page(route('videodetails',$videodetails->slug))->facebook() !!} </span>
+                                    <span class="dropdown-item"> {!! Share::page(route('videodetails',$videodetails->slug))->twitter() !!} </span>
+                                    <span class="dropdown-item"> {!! Share::page(route('videodetails',$videodetails->slug))->linkedin() !!} </span>
+                                    <span class="dropdown-item"> {!! Share::page(route('videodetails',$videodetails->slug))->whatsapp() !!} </span>
+
+                                </div>
+                            </div>
+                        </form>
+                        @else
+                        <form action="{{ route('video.like', ['video' => $videodetails->id]) }}" method="POST">
+                            @csrf
+                            <div class="dropdown dropup">
+                                <button type="submit" class="btn btn-outline-dark btn-sm" style="border: #fff solid 1px"><i class="fa fa-thumbs-up "></i> Like</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $countvideolikes }} Likes
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                <a href="#" class="text-dark dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-share"></i> Share</a>
+                                <div class="dropdown-menu">
+                                    <span class="dropdown-item"> {!! Share::page(route('videodetails',$videodetails->slug))->facebook() !!} </span>
+                                    <span class="dropdown-item"> {!! Share::page(route('videodetails',$videodetails->slug))->twitter() !!} </span>
+                                    <span class="dropdown-item"> {!! Share::page(route('videodetails',$videodetails->slug))->linkedin() !!} </span>
+                                    <span class="dropdown-item"> {!! Share::page(route('videodetails',$videodetails->slug))->whatsapp() !!} </span>
+
+                                </div>
+                            </div>
+                        </form>
+                        @endif
                     </div>
                 </div>
             </div>

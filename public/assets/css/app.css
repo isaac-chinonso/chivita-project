@@ -29,6 +29,7 @@ body {
     position: relative;
     display: flex;
     min-height: 300px;
+    max-height: 100%;
     border-radius: 8px 8px 0 0;
 }
 
@@ -188,7 +189,7 @@ a {
     /* Black with opacity */
 }
 
-.dropDown button {
+.dropDown1 button {
     background-color: black;
     color: white;
     padding: 16px;
@@ -196,7 +197,7 @@ a {
     border: none;
 }
 
-.dropDown {
+.dropDown1 {
     position: relative;
     display: inline-block;
 }
@@ -228,7 +229,7 @@ a {
     margin-right: 5px;
 }
 
-.dropDown:hover .submenu {
+.dropDown1:hover .submenu {
     display: inline-block;
 }
 

@@ -22,7 +22,7 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <title>Creasoft - Software and Digital Agency HTML Template</title>
+    <title>Login | Chivita</title>
 
     <style>
         *,
@@ -85,7 +85,7 @@
         label {
             display: block;
             margin-top: 2vh;
-            font-size: 1.6vh;
+            font-size: 2.6vh;
             font-weight: 500;
         }
 
@@ -98,12 +98,13 @@
             border-radius: 3px;
             padding: 0 1vh;
             margin-top: 1.3vh;
-            font-size: 1.4vh;
+            font-size: 2.4vh;
             font-weight: 300;
         }
 
         ::placeholder {
             color: #000;
+            font-size: 2.4vh;
         }
 
         button {
@@ -112,7 +113,7 @@
             background-color: red;
             color: #fff;
             padding: 1.8vh 0;
-            font-size: 1.8vh;
+            font-size: 2.8vh;
             font-weight: 600;
             border-radius: 5px;
             cursor: pointer;
@@ -172,7 +173,7 @@
                                 <button type="submit">Log In</button><br><br><br>
 
                                 <p style="color: red;text-align: center;">
-                                    Forgot Password? <span style="color:#000;">Cick to reset</span>
+                                    <a href="{{ url('/forget-password') }}" style="color: red;">Forgot Password?</a> <span style="color:#000;">Click to reset</span>
                                 </p>
 
                                 <p style="color: red;text-align: center;">
